@@ -1,0 +1,26 @@
+<div class="page--gpio-board" ng-class="{'show-info': showGpioInfo }">
+    <div class="board">
+        <div class="chipset"></div>
+        <div class="chipset mini"></div>
+        <div class="socket display"><i></i></div>
+        <div class="socket camera"><i></i></div>
+    </div>
+    <div class="selected-pin-info" ng-class="{'active': selectedPin }">
+        <ul>
+            <li>Pin: {{ selectedPin.pin }}</li>
+            <li>Name: {{ selectedPin.name }}</li>
+            <li>Description: {{ selectedPin.info }}</li>
+            <li>GPIO: {{ selectedPin.isGpio ? selectedPin.name : '-' }}</li>
+        </ul>
+        <span class="close" ng-click="setSelectedPin()">X</span>
+    </div>
+    <span class="toggle-info" ng-click="showGpioInfo = !showGpioInfo">i</span>
+    <ul class="pins clearfix">
+        <li ng-repeat="pin in gpio" ng-click="setSelectedPin(pin)">
+            <div class="pin-info">
+                <div class="pin-number" ng-bind="pin.pin"></div>
+                <div class="pin-name" ng-bind="pin.name"></div>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -1,1 +1,4 @@
-# raspberry-gpio
+# Raspberry gpio
+
+## Getting started
+- $ `npm install`

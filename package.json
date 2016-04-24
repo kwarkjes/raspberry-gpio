@@ -1,0 +1,27 @@
+{
+  "name": "raspberry-gpio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node_modules/webpack/bin/webpack.js index.js bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwarkjes/raspberry-grpio.git"
+  },
+  "author": "Yassine elouazzani <yassine@elouazzani.nl>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kwarkjes/raspberry-grpio/issues"
+  },
+  "homepage": "https://github.com/kwarkjes/raspberry-grpio#readme",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.2.18"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.0"
+  }
+}
