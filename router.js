@@ -6,9 +6,10 @@ module.exports = function($stateProvider, $urlRouterProvider) {
         url: '/',
         views: {
             app: {
-                controller: 'GpioBoardController',
-                templateUrl: 'templates/gpio-board.html',
+                controller: 'RaspberryListController',
+                templateUrl: 'templates/raspberry-list.html',
             },
         }
-    });
+    })
+    ;
 };
