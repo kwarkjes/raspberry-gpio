@@ -1,0 +1,390 @@
+body,
+html {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.viewport {
+    //background: #111;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+}
+
+.page--gpio-board {
+    //background: #111;
+    //color: #fff;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .board {
+        background: #508134;
+        height: 990px;
+        position: absolute;
+        width: 670px;
+        top: calc(50% - 380px);
+        border-radius: 10px;
+        opacity: 1;
+        transition: opacity .5s;
+        right: calc(50% + -46px);
+
+        .chipset {
+            background: #3C3C3C;
+            border-radius: 5px;
+            height: 169px;
+            position: absolute;
+            right: 207px;
+            top: 230px;
+            width: 170px;
+
+            &.mini {
+                right: 215px;
+                height: 100px;
+                width: 100px;
+                top: 650px;
+            }
+        }
+
+        .socket {
+            position: absolute;
+            right: 201px;
+            height: 37px;
+            width: 263px;
+            background: #eee;
+            top: 15px;
+            border-radius: 5px;
+
+            &::before,
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: -11px;
+                background: #EEE;
+                height: 11px;
+                width: 121px;
+                left: 61px;
+                transform: skew(-50deg);
+            }
+
+            &::after {
+                left: 80px;
+                transform: skew(50deg);
+            }
+
+            &.display {
+                right: 201px;
+                top: 15px;
+            }
+
+            &.camera {
+                right: 396px;
+                top: 507px;
+                transform: rotate(180deg);
+            }
+
+            i {
+                display: block;
+                height: 21px;
+                width: 193px;
+                position: absolute;
+                left: 36px;
+                background: #3C3C3C;
+                top: 16px;
+            }
+
+        }
+
+        .video {
+            position: absolute;
+            top: 483px;
+            right: 11px;
+            width: 120px;
+            height: 120px;
+            background: #ee3;
+            border-radius: 5px;
+
+            &::before {
+                content: '';
+                height: 91px;
+                width: 80px;
+                background: #ddd;
+                display: block;
+                position: absolute;
+                top: 14px;
+                right: -80px;
+                border-radius: 0 5px 5px 0;
+            }
+        }
+
+
+        .audio {
+            position: absolute;
+            top: 683px;
+            right: 11px;
+            width: 120px;
+            height: 150px;
+            background: #A8DAF5;
+            border-radius: 5px;
+
+            &::before {
+                content: '';
+                height: 61px;
+                width: 30px;
+                background: #A8DAF5;
+                display: block;
+                position: absolute;
+                top: 44px;
+                right: -30px;
+                border-radius: 0 5px 5px 0;
+            }
+        }
+
+
+        .hdmi {
+            content: '';
+            height: 181px;
+            width: 120px;
+            background: #ddd;
+            display: block;
+            position: absolute;
+            top: 434px;
+            left: 0;
+            border-radius: 5px;
+        }
+    }
+}
+
+
+
+
+
+
+.page--gpio-board ul.pins {
+    background: #3C3C3C;
+    border-radius: 5px;
+    list-style: none;
+    margin: 0 auto;
+    padding: 5px;
+    position: relative;
+    width: 70px;
+
+    > li {
+        background: #EECA56;
+        cursor: pointer;
+        display: block;
+        float: left;
+        height: 10px;
+        margin: 10px;
+        position: relative;
+        width: 10px;
+
+        &:hover {
+            .pin-info {
+                opacity: 1;
+            }
+        }
+
+        .pin-info {
+            background: rgba(#fff, .5);
+            height: 1px;
+            margin-left: -100px;
+            opacity: 0;
+            position: absolute;
+            top: 4.5px;
+            transition: opacity .3s ease-out;
+            width: 100px;
+        }
+
+        &:nth-child(even) {
+            .pin-info {
+                margin-left: 10px;
+                text-align: right;
+            }
+
+            .pin-number {
+                left: 0;
+                right: auto;
+            }
+        }
+
+        .pin-number {
+            position: absolute;
+            top: -6px;
+            height: 12px;
+            font-size: 9px;
+            right: 0;
+            width: 15px;
+            text-align: center;
+            line-height: 13px;
+            background: #3C3C3C;
+        }
+
+
+    }
+}
+
+.page--gpio-board .pins .pin-name {
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: -20px;
+}
+
+.page--gpio-board.show-info {
+    .pin-info {
+        opacity: 1;
+    }
+
+    .board {
+        opacity: .2;
+    }
+}
+
+
+.page--gpio-board .toggle-info {
+    height: 50px;
+    width: 50px;
+    background: #fff;
+    border-radius: 100%;
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    text-align: center;
+    line-height: 50px;
+    color: #555;
+    font-size: 30px;
+    font-family: serif;
+    cursor: pointer;
+
+
+    display: none;
+}
+
+.selected-pin-info {
+    position: absolute;
+    width: 250px;
+    height: 100vh;
+    padding-top: 160px;
+    background: #2196F3;
+    transform: translateX(-250px);
+    transition: transform .2s ease-in;
+    z-index: 1;
+
+    display: none;
+}
+
+.selected-pin-info.active {
+    transform: translateX(0);
+}
+
+.selected-pin-info .close {
+    position: absolute;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    top: 20px;
+    background: red;
+    display: block;
+    text-align: center;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+
+/*RPI 1A*/
+.raspberry1ModelA {
+    &.page--gpio-board {
+        .board {
+            top: calc(50% - 211px);
+            width: 658px;
+        }
+
+        .chipset {
+            right: 256px;
+            height: 145px;
+            width: 145px;
+            top: 400px;
+        }
+
+        .socket {
+            &,
+            &::before,
+            &::after {
+                background: #3C3C3C;
+            }
+
+            &.display {
+                right: 196px;
+                top: 119px;
+            }
+
+            &.camera {
+                top: 670px;
+                right: 385px;
+            }
+
+            i {
+                box-shadow: 0px 7px 0 #302F2F inset;
+            }
+        }
+    }
+}
+
+
+
+//
+//    raspberry-list
+//
+.raspberry-list {
+    font-size: 0;
+    height: 100vh;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+
+    > li {
+        display: inline-block;
+        font-size: 1rem;
+        height: 100%;
+        padding: 10px;
+        position: relative;
+        overflow: hidden;
+        vertical-align: middle;
+        width: 50%;
+
+        &:first-child {
+            background: rgba(#000, .3);
+        }
+    }
+
+    .page--gpio-board {
+        // transform: scale(.6);
+        // transform-origin: center;
+
+        .board {
+            left: 10%;
+            right: auto;
+            top: auto;
+
+            width: 80%;
+        }
+    }
+
+}
